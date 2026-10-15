@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="url(#grad)" />
+  <!-- Stylized soaring bird / wings symbol of Udaan -->
+  <path d="M22 62 C34 42 46 36 50 22 C54 36 66 42 78 62 C64 54 56 50 50 54 C44 50 36 54 22 62 Z" fill="#ffffff" />
+  <!-- Radiant sun / bindi dot of empowerment -->
+  <circle cx="50" cy="20" r="6" fill="#fde047" />
+</svg>
