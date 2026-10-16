@@ -1,5 +1,14 @@
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { seedResources, seedCategories } from './src/data/seedData.js';
 import { maskMongoUri, getDBStatus } from './src/config/db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config();
 
 console.log('====================================================');
 console.log('   UdaanSaheli Automated Test & Verification Suite  ');

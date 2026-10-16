@@ -8,10 +8,13 @@ import { fileURLToPath } from 'url';
 import { connectDB, getDBStatus } from './config/db.js';
 import resourceRoutes from './routes/resourceRoutes.js';
 
-dotenv.config();
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Ensure .env is discovered whether starting from root or server directory
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -70,7 +73,13 @@ app.get('/api/health', async (req, res) => {
 });
 
 // Single-URL Production Setup: Serve Vite static bundle from client/dist if available
-const clientDistPath = path.resolve(__dirname, '../../client/dist');
+const candidateDistPaths = [
+  path.resolve(__dirname, '../../client/dist'),
+  path.resolve(__dirname, '../client/dist'),
+  path.resolve(process.cwd(), 'client/dist'),
+  path.resolve(process.cwd(), '../client/dist')
+];
+const clientDistPath = candidateDistPaths.find(p => fs.existsSync(p)) || candidateDistPaths[0];
 const hasClientDist = fs.existsSync(clientDistPath);
 
 if (hasClientDist) {
