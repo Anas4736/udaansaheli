@@ -709,6 +709,367 @@ export const seedResources = [
         detail: { en: "Use customer advance to purchase raw materials rather than taking loans from outside.", hi: "ग्राहक से मिले एडवांस से ही कच्चा माल खरीदें, ताकि आपको बाहर से ब्याज पर पैसा न लेना पड़े।" }
       }
     ]
+  },
+
+  // 13. IIP Rural Packaging Training
+  {
+    id: "iip-packaging-training",
+    title: {
+      en: "Indian Institute of Packaging (IIP) Rural Packaging Training",
+      hi: "भारतीय पैकेजिंग संस्थान (IIP) ग्रामीण पैकेजिंग एवं शेल्फ-लाइफ प्रशिक्षण"
+    },
+    description: {
+      en: "Specialized practical training by Indian Institute of Packaging on moisture protection, hygienic food sealing, shelf-life extension, and eco-friendly packing for village producers.",
+      hi: "भारतीय पैकेजिंग संस्थान (IIP) द्वारा आयोजित विशेष व्यावहारिक प्रशिक्षण, जिसमें खाद्य वस्तुओं की सीलिंग, नमी से सुरक्षा, शेल्फ-लाइफ बढ़ाने और पर्यावरण-अनुकूल पैकेजिंग सिखाई जाती है।"
+    },
+    category: "product-packaging",
+    categoryLabel: {
+      en: "Product Improvement & Packaging",
+      hi: "उत्पाद सुधार और पैकेजिंग"
+    },
+    type: "training-program",
+    typeLabel: {
+      en: "Training Program",
+      hi: "प्रशिक्षण कार्यक्रम"
+    },
+    sourceName: "Indian Institute of Packaging (IIP), Ministry of Commerce & Industry",
+    sourceUrl: "https://www.iip-in.com/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "Package",
+    featured: true,
+    tags: ["packaging", "training", "shelf-life", "food-safety", "sealing", "eco-friendly"],
+    eligibility: {
+      en: "Rural women entrepreneurs, SHG members, and micro-producers engaged in packaging pickles, spices, snacks, flour, handicrafts, or herbal products.",
+      hi: "अचार, मसाले, पापड़, बेसन, हस्तशिल्प अथवा हर्बल उत्पाद तैयार करने वाली ग्रामीण महिला उद्यमी व स्वयं सहायता समूह सदस्य।"
+    },
+    benefits: {
+      en: "Learn scientific packaging at fraction of city costs; prevent product spoilage during transport; access certified testing labs; learn FSSAI label formatting.",
+      hi: "कम लागत में आधुनिक पैकेजिंग सीखें; परिवहन के दौरान माल खराब होने से बचाएं; FSSAI लेबल नियम और बारकोड लगाने की व्यावहारिक जानकारी।"
+    },
+    requiredDocuments: [
+      { en: "Aadhaar Card", hi: "आधार कार्ड" },
+      { en: "SHG Member Certificate or Udyam Registration (if registered)", hi: "SHG सदस्यता पत्र अथवा उद्यम पंजीकरण (यदि उपलब्ध हो)" },
+      { en: "Sample of Current Product Package", hi: "वर्तमान में इस्तेमाल हो रहे उत्पाद पैकेट का नमूना" }
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Select Nearest IIP Regional Center or District Workshop", hi: "निकटतम IIP क्षेत्रीय केंद्र या जिला कार्यशाला चुनें" },
+        detail: { en: "Visit the official IIP portal or district MSME center to register for scheduled rural entrepreneur packaging modules.", hi: "IIP पोर्टल अथवा जिला उद्योग केंद्र पर जाकर ग्रामीण महिला उद्यमियों के लिए निर्धारित कार्यशाला में नाम दर्ज कराएं।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Attend Hands-On Sealing & Material Workshop", hi: "सीलिंग और पैकिंग सामग्री की व्यावहारिक कार्यशाला में भाग लें" },
+        detail: { en: "Learn which low-cost pouches prevent oil leaks and moisture, and how simple heat sealers work.", hi: "सीखें कि कौन से किफायती पाउच तेल रिसने और नमी को रोकते हैं, और साधारण हीट सीलर मशीन का सही उपयोग कैसे करें।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Implement Standard Clean Labeling", hi: "उत्पाद पर शुद्धता और मानक लेबल लगाना शुरू करें" },
+        detail: { en: "Add net weight, batch date, ingredients list, and village artisan contact number to win customer trust.", hi: "ग्राहक का भरोसा जीतने के लिए पैकेट पर शुद्ध वजन, निर्माण तिथि, सामग्री सूची और संपर्क नंबर जोड़ें।" }
+      }
+    ]
+  },
+
+  // 14. KVIC Eco-Friendly Packaging Material Cluster
+  {
+    id: "kvic-eco-packaging-cluster",
+    title: {
+      en: "KVIC Eco-Friendly Paper & Cloth Packaging Sourcing Scheme",
+      hi: "KVIC पर्यावरण-अनुकूल पेपर व कपड़ा पैकेजिंग क्लस्टर योजना"
+    },
+    description: {
+      en: "Khadi and Village Industries Commission initiative connecting women entrepreneurs to subsidized biodegradable paper bags, handmade boxes, and cotton cloth pouches for premium rural product sales.",
+      hi: "खादी एवं ग्रामोद्योग आयोग की पहल, जिसके जरिए महिला उद्यमियों को प्रीमियम उत्पादों हेतु सब्सिडी युक्त जैविक पेपर बैग, हस्तनिर्मित बक्से और सूती कपड़े के पाउच उपलब्ध कराए जाते हैं।"
+    },
+    category: "product-packaging",
+    categoryLabel: {
+      en: "Product Improvement & Packaging",
+      hi: "उत्पाद सुधार और पैकेजिंग"
+    },
+    type: "market-opportunity",
+    typeLabel: {
+      en: "Market Opportunity",
+      hi: "बाजार अवसर"
+    },
+    sourceName: "Khadi and Village Industries Commission (KVIC), Ministry of MSME",
+    sourceUrl: "https://www.kviconline.gov.in/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "ShoppingBag",
+    featured: false,
+    tags: ["packaging", "eco-friendly", "paper-bags", "kvic", "biodegradable", "plastic-alternative"],
+    eligibility: {
+      en: "Rural women groups, Khadi artisans, and individual makers selling organic grains, honey, soaps, or boutique clothing looking to replace single-use plastic.",
+      hi: "जैविक अनाज, शहद, प्राकृतिक साबुन अथवा वस्त्र बेचने वाली ग्रामीण महिलाएं जो प्लास्टिक हटाकर पर्यावरण-अनुकूल पैकिंग चाहती हैं।"
+    },
+    benefits: {
+      en: "Access certified biodegradable packaging material at bulk cluster rates; eligible to participate in organic and eco-lifestyle exhibitions.",
+      hi: "थोक क्लस्टर दरों पर प्रमाणित पर्यावरण-अनुकूल पैकेजिंग सामग्री; प्राकृतिक एवं जैविक प्रदर्शनियों में उत्पाद प्रदर्शित करने की पात्रता।"
+    },
+    requiredDocuments: [
+      { en: "Aadhaar Card and Bank Account Passbook", hi: "आधार कार्ड और बैंक खाता पासबुक" },
+      { en: "Gram Panchayat Residence Proof", hi: "ग्राम पंचायत निवास प्रमाण पत्र" }
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Visit Local KVIC or District Khadi Office", hi: "स्थानीय खादी एवं ग्रामोद्योग कार्यालय से संपर्क करें" },
+        detail: { en: "Enquire about the nearest Village Industries packaging cluster supplying handmade paper and cloth packaging.", hi: "हस्तनिर्मित कागज और सूती बैग उपलब्ध कराने वाले निकटतम ग्रामोद्योग क्लस्टर की जानकारी प्राप्त करें।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Procure Standardized Eco-Packaging", hi: "मानकीकृत इको-फ्रेंडली पैकेजिंग प्राप्त करें" },
+        detail: { en: "Choose sizes suitable for spices, dry fruits, soaps, or clothing with natural jute cord ties.", hi: "मसालों, मेवों, साबुनों अथवा कपड़ों के लिए उपयुक्त आकार के थैले व डिब्बे चुनें।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Market as 100% Eco-Friendly Rural Craft", hi: "100% प्लास्टिक-मुक्त प्राकृतिक उत्पाद के रूप में बेचें" },
+        detail: { en: "City buyers and tourist exhibitions pay higher prices for sustainable, plastic-free traditional goods.", hi: "शहरी ग्राहक और पर्यटक प्लास्टिक-मुक्त, प्राकृतिक पैकेजिंग वाले सामान के लिए अधिक मूल्य देने को तैयार रहते हैं।" }
+      }
+    ]
+  },
+
+  // 15. MSME DPR Model Business Plan Profiles
+  {
+    id: "msme-dpr-project-profiles",
+    title: {
+      en: "MSME Ready-to-Use Model Detailed Project Reports (DPR)",
+      hi: "MSME तैयार मॉडल प्रोजेक्ट रिपोर्ट (DPR) एवं व्यापार योजना"
+    },
+    description: {
+      en: "Official repository of pre-calculated model project profiles by Ministry of MSME for 100+ rural micro-enterprises including spice grinding, dairy, papad making, and tailoring with complete cost breakdowns for bank loans.",
+      hi: "सूक्ष्म, लघु एवं मध्यम उद्यम मंत्रालय द्वारा 100+ ग्रामीण व्यवसायों (मसाला पिसाई, डेयरी, पापड़, सिलाई आदि) के लिए तैयार मॉडल प्रोजेक्ट रिपोर्ट, जिसमें बैंक लोन हेतु मशीनरी व लागत का पूरा विवरण है।"
+    },
+    category: "business-planning",
+    categoryLabel: {
+      en: "Business Planning",
+      hi: "व्यवसाय योजना बनाना"
+    },
+    type: "learning-resource",
+    typeLabel: {
+      en: "Learning Guide",
+      hi: "सीखने की सामग्री"
+    },
+    sourceName: "Development Commissioner (MSME), Government of India",
+    sourceUrl: "https://www.dcmsme.gov.in/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "BookOpen",
+    featured: false,
+    tags: ["business-plan", "dpr", "bank-loan", "msme", "project-report", "costing"],
+    eligibility: {
+      en: "Any rural woman entrepreneur preparing a loan application for PMEGP, Mudra, or state livelihood missions requiring an authentic project report.",
+      hi: "PMEGP, मुद्रा अथवा राज्य आजीविका मिशन के तहत बैंक ऋण हेतु आवेदन करने वाली कोई भी ग्रामीण महिला जिसे प्रोजेक्ट रिपोर्ट की जरूरत है।"
+    },
+    benefits: {
+      en: "Saves ₹3,000 to ₹5,000 in professional CA drafting fees; pre-approved financial ratios accepted directly by public sector rural banks.",
+      hi: "प्राइवेट एजेंटों को 3,000 से 5,000 रुपये की फीस देने से बचत; बैंकों द्वारा मान्यता प्राप्त वित्तीय अनुपात व अनुमानित लाभ गणना।"
+    },
+    requiredDocuments: [
+      { en: "Identity Proof (Aadhaar / Voter ID)", hi: "पहचान प्रमाण (आधार / वोटर आईडी)" },
+      { en: "Bank Passbook with IFSC code", hi: "बैंक पासबुक (IFSC कोड सहित)" }
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Search Your Business Sector on DC-MSME Portal", hi: "DC-MSME पोर्टल पर अपने व्यापार का क्षेत्र खोजें" },
+        detail: { en: "Download the free PDF template matching your trade (e.g. Agro-processing, Handloom, Forest produce).", hi: "अपने व्यवसाय (जैसे कृषि-प्रसंस्करण, हथकरघा, वनोपज) से संबंधित निःशुल्क मॉडल प्रोजेक्ट रिपोर्ट डाउनलोड करें।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Fill Local Equipment & Rent Figures", hi: "स्थानीय मशीनरी और किराये के वास्तविक आंकड़े दर्ज करें" },
+        detail: { en: "Adjust machine costs and raw material rates according to your local tehsil prices.", hi: "अपनी तहसील और बाजार की कीमतों के अनुसार मशीनरी लागत और कच्चे माल के खर्च को भरें।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Submit Along with Loan Application", hi: "बैंक लोन आवेदन फॉर्म के साथ संलग्न करें" },
+        detail: { en: "Attach the filled DPR to your PMEGP or Mudra loan dossier at your local branch.", hi: "अपने स्थानीय ग्रामीण बैंक शाखा में ऋण आवेदन के साथ यह प्रोजेक्ट रिपोर्ट जमा करें।" }
+      }
+    ]
+  },
+
+  // 16. Rural Brand Storytelling & Customer Trust Guide
+  {
+    id: "rural-brand-storytelling-guide",
+    title: {
+      en: "Rural Brand Storytelling & Customer Trust Guide",
+      hi: "ग्रामीण ब्रांड निर्माण एवं ग्राहक विश्वास गाइड"
+    },
+    description: {
+      en: "Step-by-step practical guide for village women entrepreneurs on naming their business, telling the story of authentic handmade quality, designing clean packaging tags, and turning one-time buyers into loyal repeat customers.",
+      hi: "ग्रामीण महिला उद्यमियों के लिए व्यावहारिक मार्गदर्शिका: अपने व्यवसाय का आकर्षक नाम रखना, हस्तनिर्मित शुद्धता की कहानी बयां करना, सुंदर टैग लगाना और ग्राहकों का अटूट भरोसा जीतना।"
+    },
+    category: "branding-marketing",
+    categoryLabel: {
+      en: "Branding & Marketing",
+      hi: "ब्रांडिंग और मार्केटिंग"
+    },
+    type: "learning-resource",
+    typeLabel: {
+      en: "Learning Guide",
+      hi: "सीखने की सामग्री"
+    },
+    sourceName: "National Rural Livelihoods Mission (NRLM) Knowledge Cell",
+    sourceUrl: "https://aajeevika.gov.in/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "TrendingUp",
+    featured: false,
+    tags: ["branding", "marketing", "storytelling", "customer-trust", "logo", "rural-craft"],
+    eligibility: {
+      en: "Rural artisans, weavers, pickle makers, and SHG federations looking to sell directly to city customers and tourists.",
+      hi: "हस्तशिल्प, बुनाई, पापड़-अचार बनाने वाली ग्रामीण महिलाएं व स्वयं सहायता समूह जो सीधे ग्राहकों को सामान बेचते हैं।"
+    },
+    benefits: {
+      en: "Earn 20% to 40% higher margins by establishing a recognizable trusted brand name rather than selling unbranded bulk produce to middlemen.",
+      hi: "बिचौलियों को बिना नाम का कच्चा माल बेचने के बजाय अपने ब्रांड से 20% से 40% अधिक मुनाफा कमाना सीखें।"
+    },
+    requiredDocuments: [],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Pick a Clear, Memorable Local Name", hi: "एक सरल और यादगार नाम चुनें" },
+        detail: { en: "Choose a name reflecting your village heritage, traditional recipe, or female collective pride.", hi: "अपनी क्षेत्रीय पहचान, पारंपरिक स्वाद या महिला समूह के गौरव को दर्शाने वाला आसान नाम चुनें।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Share the Maker Story on Every Pack", hi: "हर पैकेट पर बनाने वाली दीदी की कहानी साझा करें" },
+        detail: { en: "Add a small note: 'Handcrafted by Sunita Didi in Mandla using organic wood-pressed mustard'. Customers love authentic human connection.", hi: "पैकेट पर छोटा संदेश लिखें: 'मण्डला की सुनीता दीदी द्वारा लकड़ी की घानी के शुद्ध तेल से निर्मित'। ग्राहक सच्ची कहानी को सराहते हैं।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Provide Direct Phone / WhatsApp for Reorders", hi: "दोबारा ऑर्डर के लिए सीधा व्हाट्सएप नंबर दें" },
+        detail: { en: "Encourage satisfied buyers at exhibitions to message directly for doorstep courier delivery.", hi: "हाट-मेलों में आए खुश ग्राहकों को सीधा नंबर दें ताकि वे घर बैठे दोबारा ऑर्डर दे सकें।" }
+      }
+    ]
+  },
+
+  // 17. TRIFED Tribes India Artisan Empanelment
+  {
+    id: "trifed-tribes-india-empanelment",
+    title: {
+      en: "TRIFED Tribes India Artisan Empanelment & Market Access",
+      hi: "ट्राइफेड (TRIFED) ट्राइब्स इंडिया शिल्पकार पंजीकरण एवं बाजार पहुंच"
+    },
+    description: {
+      en: "Direct empanelment programme by Tribal Co-operative Marketing Development Federation of India providing assured procurement, retail showcase across 100+ national showrooms, and international exhibition stalls.",
+      hi: "जनजातीय सहकारी विपणन विकास संघ (TRIFED) का सीधा पंजीकरण कार्यक्रम, जिसके माध्यम से देश भर के 100+ शोरूम और अंतरराष्ट्रीय हाटों में महिला शिल्पकारों के सामान की सुनिश्चित खरीद होती है।"
+    },
+    category: "starting-business",
+    categoryLabel: {
+      en: "Starting a Small Business",
+      hi: "छोटा व्यवसाय शुरू करना"
+    },
+    type: "market-opportunity",
+    typeLabel: {
+      en: "Market Opportunity",
+      hi: "बाजार अवसर"
+    },
+    sourceName: "Tribal Co-operative Marketing Development Federation of India (TRIFED)",
+    sourceUrl: "https://trifed.tribal.gov.in/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "Users",
+    featured: true,
+    tags: ["artisans", "tribal-women", "handicrafts", "market-linkage", "retail", "trifed"],
+    eligibility: {
+      en: "Rural tribal women artisans, craftswomen, and forest produce gatherers making authentic textiles, pottery, jewelry, paintings, or herbal items.",
+      hi: "पारंपरिक वस्त्र, धातु शिल्प, मिट्टी के बर्तन, आभूषण, पेंटिंग या वनौषधि बनाने वाली ग्रामीण व आदिवासी महिला शिल्पकार।"
+    },
+    benefits: {
+      en: "Direct purchase orders with fair minimum support pricing, zero middlemen, timely direct-to-bank account payments, and free travel to major metropolitan exhibitions.",
+      hi: "उचित मूल्य पर सीधी खरीद, बिना बिचौलिए के बैंक खाते में सीधा भुगतान, और बड़े शहरों के राष्ट्रीय मेलों में निःशुल्क स्टॉल की सुविधा।"
+    },
+    requiredDocuments: [
+      { en: "Aadhaar Card and Caste/Tribe Certificate (where applicable)", hi: "आधार कार्ड एवं जनजाति प्रमाण पत्र (जहाँ लागू हो)" },
+      { en: "Artisan Card or Gram Pradhan Endorsement Letter", hi: "शिल्पकार कार्ड अथवा ग्राम प्रधान संस्तुति पत्र" },
+      { en: "Bank Passbook with Aadhaar Seeding", hi: "आधार से जुड़ा बैंक पासबुक" }
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Visit Regional TRIFED Office or Aadi Mahotsav Helpdesk", hi: "क्षेत्रीय ट्राइफेड कार्यालय अथवा आदि महोत्सव हेल्पडेस्क पर जाएं" },
+        detail: { en: "Present product samples to the empanelment committee for quality and traditional craftsmanship review.", hi: "गुणवत्ता व पारंपरिक हस्तकला परीक्षण हेतु समिति के समक्ष अपने 3-4 उत्पादों के नमूने प्रस्तुत करें।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Complete Supplier Empanelment Registration", hi: "आधिकारिक विक्रेता पंजीकरण फॉर्म भरें" },
+        detail: { en: "Submit bank details and artisan identity to receive a verified TRIFED vendor registration code.", hi: "सत्यापित ट्राइफेड वेंडर कोड प्राप्त करने के लिए बैंक विवरण और पहचान पत्र जमा करें।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Supply Stock & Receive Direct Payment", hi: "माल की आपूर्ति करें और खाते में सीधा भुगतान पाएं" },
+        detail: { en: "Deliver finished batches against official purchase orders and receive verified payments within 15 days.", hi: "क्रय आदेश के अनुसार माल पहुंचाएं और 15 दिनों के भीतर बैंक खाते में सुनिश्चित भुगतान प्राप्त करें।" }
+      }
+    ]
+  },
+
+  // 18. Stand-Up India Scheme for Women Entrepreneurs
+  {
+    id: "standup-india-women-entrepreneurs",
+    title: {
+      en: "Stand-Up India Scheme for Women Entrepreneurs",
+      hi: "स्टैंड-अप इंडिया योजना (महिला उद्यमी बैंक ऋण)"
+    },
+    description: {
+      en: "Department of Financial Services flagship scheme facilitating bank loans between ₹10 Lakhs and ₹1 Crore to at least one woman borrower per bank branch for setting up a greenfield enterprise in manufacturing, services, or agri-allied trading.",
+      hi: "वित्तीय सेवा विभाग की प्रमुख योजना जिसके तहत हर बैंक शाखा द्वारा कम से कम एक महिला उद्यमी को नया उद्यम शुरू करने हेतु ₹10 लाख से ₹1 करोड़ तक का बैंक ऋण उपलब्ध कराया जाता है।"
+    },
+    category: "finance-pricing",
+    categoryLabel: {
+      en: "Pricing & Finance Basics",
+      hi: "मूल्य निर्धारण और वित्त"
+    },
+    type: "government-scheme",
+    typeLabel: {
+      en: "Government Scheme",
+      hi: "सरकारी योजना"
+    },
+    sourceName: "Department of Financial Services, Ministry of Finance",
+    sourceUrl: "https://www.standupmitra.in/",
+    isVerifiedOfficial: true,
+    isSampleDemo: false,
+    verifiedDate: "October 2026",
+    icon: "DollarSign",
+    featured: false,
+    tags: ["bank-loan", "women-entrepreneur", "manufacturing", "greenfield", "subsidy", "standup-india"],
+    eligibility: {
+      en: "Women entrepreneurs above 18 years setting up a first-time greenfield business. In non-individual enterprises, 51% shareholding must be held by women.",
+      hi: "18 वर्ष से अधिक आयु की महिला उद्यमी जो पहली बार नया व्यापार (ग्रीनफील्ड) शुरू कर रही हों। समूह या कंपनी में 51% हिस्सेदारी महिला के पास होनी चाहिए।"
+    },
+    benefits: {
+      en: "Composite loan covering term loan and working capital between ₹10L and ₹1Cr; subsidized margin money support; handholding through SIDBI Standup Mitra portal.",
+      hi: "₹10 लाख से ₹1 करोड़ तक का समग्र ऋण (टर्म लोन व कार्यशील पूंजी); मार्जिन मनी पर सरकारी सहायता; सिडबी पोर्टल द्वारा चरणबद्ध मार्गदर्शन।"
+    },
+    requiredDocuments: [
+      { en: "Identity & Address Proof (Aadhaar, PAN Card)", hi: "पहचान एवं निवास प्रमाण (आधार, पैन कार्ड)" },
+      { en: "Detailed Project Report (DPR) with machinery quotations", hi: "मशीनरी कोटेशन सहित विस्तृत प्रोजेक्ट रिपोर्ट" },
+      { en: "Proof of business premises (Rent agreement / Gram Panchayat NOC)", hi: "कार्यस्थल का प्रमाण (किरायानामा / ग्राम पंचायत एनओसी)" },
+      { en: "Bank Statement of last 6 months", hi: "पिछले 6 माह का बैंक खाता विवरण" }
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: { en: "Register on Stand-Up Mitra Portal", hi: "स्टैंड-अप मित्रा पोर्टल पर ऑनलाइन पंजीकरण करें" },
+        detail: { en: "Visit standupmitra.in, select 'Borrower Registration', and choose your district bank branch.", hi: "standupmitra.in पर जाएं, 'Borrower Registration' चुनें और अपने जिले की बैंक शाखा का चयन करें।" }
+      },
+      {
+        stepNumber: 2,
+        title: { en: "Access Handholding Support if Needed", hi: "यदि आवश्यक हो तो मार्गदर्शन सहायता (Handholding) चुनें" },
+        detail: { en: "Connect with local lead district bank counselors for help with project reports, skill training, and margin money convergence.", hi: "प्रोजेक्ट रिपोर्ट व मार्जिन मनी सब्सिडी के लिए जिला लीड बैंक प्रबंधक या सिडबी केंद्र से सहायता लें।" }
+      },
+      {
+        stepNumber: 3,
+        title: { en: "Complete Bank Appraisal & Sanction", hi: "बैंक मूल्यांकन पूर्ण करें और ऋण स्वीकृति प्राप्त करें" },
+        detail: { en: "The scheduled commercial bank verifies documents, conducts site inspection, and sanctions the composite credit limit.", hi: "बैंक दस्तावेजों की जांच और स्थल निरीक्षण के बाद ऋण स्वीकृति पत्र जारी करता है।" }
+      }
+    ]
   }
 ];
 

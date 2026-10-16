@@ -33,9 +33,20 @@ export const ResourceDetailPage = ({ resource, onBack }) => {
   const benefits = resource.benefits?.[language] || resource.benefits?.en || '';
   const saved = isSaved(resource.id);
 
+  const eligibilityPrefix = language === 'hi' ? 'पात्रता:' : 'Eligibility:';
+  const benefitsPrefix = language === 'hi' ? 'लाभ:' : 'Benefits:';
   const fullTextToRead = `${title}. ${description}. ${
-    eligibility ? `पात्रता: ${eligibility}.` : ''
-  } ${benefits ? `लाभ: ${benefits}.` : ''}`;
+    eligibility ? `${eligibilityPrefix} ${eligibility}.` : ''
+  } ${benefits ? `${benefitsPrefix} ${benefits}.` : ''}`;
+
+  const handleOfficialPortalClick = () => {
+    try {
+      const current = parseInt(localStorage.getItem('udaansaheli_session_clicks') || '0', 10);
+      localStorage.setItem('udaansaheli_session_clicks', String(current + 1));
+    } catch (e) {
+      // Ignore localStorage error
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8 animate-fadeIn">
@@ -120,6 +131,7 @@ export const ResourceDetailPage = ({ resource, onBack }) => {
               href={resource.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleOfficialPortalClick}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition-all shadow-sm hover:shadow flex-shrink-0 min-h-[48px]"
             >
               <span>{t.officialSourceBtn}</span>
@@ -247,6 +259,7 @@ export const ResourceDetailPage = ({ resource, onBack }) => {
               href={resource.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={handleOfficialPortalClick}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm sm:text-base transition-all shadow-md min-h-[48px]"
             >
               <span>{t.officialSourceBtn}</span>

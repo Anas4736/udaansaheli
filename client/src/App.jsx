@@ -78,6 +78,10 @@ function MainApp() {
       const titleHi = item.title?.hi?.toLowerCase() || '';
       const descEn = item.description?.en?.toLowerCase() || '';
       const descHi = item.description?.hi?.toLowerCase() || '';
+      const catEn = item.categoryLabel?.en?.toLowerCase() || '';
+      const catHi = item.categoryLabel?.hi?.toLowerCase() || '';
+      const typeEn = item.typeLabel?.en?.toLowerCase() || '';
+      const typeHi = item.typeLabel?.hi?.toLowerCase() || '';
       const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
       const source = item.sourceName?.toLowerCase() || '';
 
@@ -86,6 +90,10 @@ function MainApp() {
         titleHi.includes(term) ||
         descEn.includes(term) ||
         descHi.includes(term) ||
+        catEn.includes(term) ||
+        catHi.includes(term) ||
+        typeEn.includes(term) ||
+        typeHi.includes(term) ||
         tags.includes(term) ||
         source.includes(term);
 

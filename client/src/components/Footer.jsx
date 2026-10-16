@@ -107,8 +107,8 @@ export const Footer = ({ onNavigate }) => {
             <h4 className="text-white font-bold text-sm mb-3">Official Portals</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
-                <a href="https://pmegp.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
-                  <span>PMEGP Portal</span>
+                <a href="https://www.kviconline.gov.in/pmegpeportal/pmegphome/index.jsp" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
+                  <span>PMEGP e-Portal</span>
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </li>
@@ -127,6 +127,18 @@ export const Footer = ({ onNavigate }) => {
               <li>
                 <a href="https://gem.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
                   <span>GeM Saras Collection</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </li>
+              <li>
+                <a href="https://ondc.org" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
+                  <span>ONDC Open Network</span>
+                  <ExternalLink className="w-3 h-3 text-slate-500" />
+                </a>
+              </li>
+              <li>
+                <a href="https://rudsetiindia.org" target="_blank" rel="noopener noreferrer" className="hover:text-white flex items-center gap-1">
+                  <span>RSETI Academy</span>
                   <ExternalLink className="w-3 h-3 text-slate-500" />
                 </a>
               </li>

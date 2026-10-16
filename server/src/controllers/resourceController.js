@@ -48,6 +48,10 @@ const filterMemoryItems = (items, query) => {
       const titleHi = item.title?.hi?.toLowerCase() || '';
       const descEn = item.description?.en?.toLowerCase() || '';
       const descHi = item.description?.hi?.toLowerCase() || '';
+      const catEn = item.categoryLabel?.en?.toLowerCase() || '';
+      const catHi = item.categoryLabel?.hi?.toLowerCase() || '';
+      const typeEn = item.typeLabel?.en?.toLowerCase() || '';
+      const typeHi = item.typeLabel?.hi?.toLowerCase() || '';
       const tags = Array.isArray(item.tags) ? item.tags.join(' ').toLowerCase() : '';
       const source = item.sourceName?.toLowerCase() || '';
 
@@ -56,6 +60,10 @@ const filterMemoryItems = (items, query) => {
         titleHi.includes(term) ||
         descEn.includes(term) ||
         descHi.includes(term) ||
+        catEn.includes(term) ||
+        catHi.includes(term) ||
+        typeEn.includes(term) ||
+        typeHi.includes(term) ||
         tags.includes(term) ||
         source.includes(term)
       );
@@ -130,6 +138,10 @@ export const getResources = async (req, res) => {
         { 'title.hi': regex },
         { 'description.en': regex },
         { 'description.hi': regex },
+        { 'categoryLabel.en': regex },
+        { 'categoryLabel.hi': regex },
+        { 'typeLabel.en': regex },
+        { 'typeLabel.hi': regex },
         { tags: regex },
         { sourceName: regex }
       ];
@@ -268,7 +280,10 @@ export const getOpportunities = async (req, res) => {
           item.title?.en?.toLowerCase().includes(term) ||
           item.title?.hi?.toLowerCase().includes(term) ||
           item.description?.en?.toLowerCase().includes(term) ||
-          item.description?.hi?.toLowerCase().includes(term)
+          item.description?.hi?.toLowerCase().includes(term) ||
+          item.categoryLabel?.en?.toLowerCase().includes(term) ||
+          item.categoryLabel?.hi?.toLowerCase().includes(term) ||
+          (Array.isArray(item.tags) && item.tags.join(' ').toLowerCase().includes(term))
         );
       }
       return res.json({ success: true, count: opps.length, dataSource: 'resilient-in-memory', data: opps });
@@ -289,7 +304,10 @@ export const getOpportunities = async (req, res) => {
         { 'title.en': regex },
         { 'title.hi': regex },
         { 'description.en': regex },
-        { 'description.hi': regex }
+        { 'description.hi': regex },
+        { 'categoryLabel.en': regex },
+        { 'categoryLabel.hi': regex },
+        { tags: regex }
       ];
     }
 

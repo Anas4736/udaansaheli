@@ -17,7 +17,7 @@ export const ResourcesPage = ({
   onSelectResource,
   loading = false
 }) => {
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   return (
     <div className="space-y-6 sm:space-y-8">
@@ -78,13 +78,24 @@ export const ResourcesPage = ({
           <p className="text-sm text-slate-600 mb-6 leading-relaxed">
             {t.noResultsDesc}
           </p>
-          <button
-            onClick={onResetFilters}
-            type="button"
-            className="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition-colors shadow-sm min-h-[44px]"
-          >
-            {t.clearFilters}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            {selectedType !== 'all' && (
+              <button
+                onClick={() => onTypeChange('all')}
+                type="button"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-brand-500 text-brand-700 bg-brand-50 hover:bg-brand-100 font-bold text-sm transition-colors min-h-[44px]"
+              >
+                {language === 'hi' ? 'इस श्रेणी की सभी सामग्री देखें' : 'Show All in this Category'}
+              </button>
+            )}
+            <button
+              onClick={onResetFilters}
+              type="button"
+              className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition-colors shadow-sm min-h-[44px]"
+            >
+              {t.clearFilters}
+            </button>
+          </div>
         </div>
       )}
     </div>

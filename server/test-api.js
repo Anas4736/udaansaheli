@@ -20,7 +20,7 @@ function assert(condition, testName) {
 
 // 1. Data Integrity Tests
 console.log('--- 1. Seed Data Integrity & Schema Validation ---');
-assert(seedResources.length === 12, 'Exact 12 verified curated records are present');
+assert(seedResources.length === 18, 'Exact 18 verified curated records are present across all 6 business categories');
 assert(seedCategories.length === 6, 'All 6 required business literacy categories exist');
 
 let allBilingual = true;
