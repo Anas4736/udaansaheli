@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: udaansaheli-api
+    name: udaansaheli
     runtime: node
     plan: free
-    buildCommand: npm install
+    buildCommand: npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV

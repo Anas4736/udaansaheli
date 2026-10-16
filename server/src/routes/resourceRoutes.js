@@ -4,15 +4,16 @@ import {
   getResourceById,
   getCategories,
   getOpportunities,
-  seedDatabase
+  seedDatabase,
+  validateResourceQuery
 } from '../controllers/resourceController.js';
 
 const router = express.Router();
 
-router.get('/resources', getResources);
+router.get('/resources', validateResourceQuery, getResources);
 router.get('/resources/:id', getResourceById);
 router.get('/categories', getCategories);
-router.get('/opportunities', getOpportunities);
+router.get('/opportunities', validateResourceQuery, getOpportunities);
 router.post('/seed', seedDatabase);
 
 export default router;

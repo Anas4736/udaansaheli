@@ -1,0 +1,22 @@
+{
+  "name": "udaansaheli-root",
+  "version": "1.0.0",
+  "description": "UdaanSaheli (उड़ान सहेली) - Unified Root for BIOS 2026",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm --prefix client install && npm --prefix client run build && npm --prefix server install",
+    "start": "node server/src/index.js",
+    "test": "node server/test-api.js",
+    "server:start": "npm --prefix server start",
+    "client:dev": "npm --prefix client run dev"
+  },
+  "keywords": [
+    "rural-women",
+    "entrepreneurship",
+    "bios2026",
+    "hackathon",
+    "udaansaheli"
+  ],
+  "author": "Team Quantum Leapers"
+}

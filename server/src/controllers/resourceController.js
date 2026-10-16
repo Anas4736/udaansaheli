@@ -1,9 +1,27 @@
 import Resource from '../models/Resource.js';
 import { seedResources, seedCategories } from '../data/seedData.js';
-import { getDBStatus } from '../config/db.js';
+import { getDBStatus, idempotentSeed } from '../config/db.js';
 
 // In-memory data store for fallback
 let memoryResources = [...seedResources];
+
+const VALID_CATEGORIES = [
+  'all',
+  'starting-business',
+  'business-planning',
+  'finance-pricing',
+  'product-packaging',
+  'branding-marketing',
+  'digital-selling'
+];
+
+const VALID_TYPES = [
+  'all',
+  'government-scheme',
+  'learning-resource',
+  'training-program',
+  'market-opportunity'
+];
 
 /**
  * Filter items helper for in-memory mode
@@ -48,11 +66,41 @@ const filterMemoryItems = (items, query) => {
 };
 
 /**
+ * Input validation middleware for resources query
+ */
+export const validateResourceQuery = (req, res, next) => {
+  const { category, type, search } = req.query;
+
+  if (category && !VALID_CATEGORIES.includes(category)) {
+    return res.status(400).json({
+      success: false,
+      error: `Invalid category '${category}'. Allowed values: ${VALID_CATEGORIES.join(', ')}`
+    });
+  }
+
+  if (type && !VALID_TYPES.includes(type)) {
+    return res.status(400).json({
+      success: false,
+      error: `Invalid type '${type}'. Allowed values: ${VALID_TYPES.join(', ')}`
+    });
+  }
+
+  if (search && typeof search === 'string' && search.length > 100) {
+    return res.status(400).json({
+      success: false,
+      error: 'Search query exceeds maximum limit of 100 characters.'
+    });
+  }
+
+  next();
+};
+
+/**
  * GET /api/resources
  */
 export const getResources = async (req, res) => {
   try {
-    const dbStatus = getDBStatus();
+    const dbStatus = await getDBStatus();
 
     if (dbStatus.isUsingFallback) {
       const results = filterMemoryItems(memoryResources, req.query);
@@ -64,7 +112,7 @@ export const getResources = async (req, res) => {
       });
     }
 
-    // MongoDB query
+    // MongoDB Atlas query
     const filter = {};
     if (req.query.category && req.query.category !== 'all') {
       filter.category = req.query.category;
@@ -96,8 +144,7 @@ export const getResources = async (req, res) => {
       data: resources
     });
   } catch (error) {
-    console.error('Error fetching resources:', error);
-    // Fallback on unexpected error
+    console.error('Error fetching resources from DB:', error.message);
     const fallback = filterMemoryItems(memoryResources, req.query);
     res.json({
       success: true,
@@ -114,14 +161,22 @@ export const getResources = async (req, res) => {
 export const getResourceById = async (req, res) => {
   try {
     const { id } = req.params;
-    const dbStatus = getDBStatus();
+
+    if (!id || typeof id !== 'string' || id.trim().length === 0 || id.length > 100) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid resource ID parameter.'
+      });
+    }
+
+    const dbStatus = await getDBStatus();
 
     if (dbStatus.isUsingFallback) {
       const item = memoryResources.find(r => r.id === id || String(r._id) === id);
       if (!item) {
-        return res.status(404).json({ success: false, message: 'Resource not found' });
+        return res.status(404).json({ success: false, message: `Resource not found with ID '${id}'` });
       }
-      return res.json({ success: true, data: item });
+      return res.json({ success: true, data: item, dataSource: 'resilient-in-memory' });
     }
 
     let resource = await Resource.findOne({ id });
@@ -133,19 +188,19 @@ export const getResourceById = async (req, res) => {
       // Check in fallback data just in case
       const item = memoryResources.find(r => r.id === id);
       if (item) {
-        return res.json({ success: true, data: item });
+        return res.json({ success: true, data: item, dataSource: 'fallback-cache' });
       }
-      return res.status(404).json({ success: false, message: 'Resource not found' });
+      return res.status(404).json({ success: false, message: `Resource not found with ID '${id}'` });
     }
 
-    res.json({ success: true, data: resource });
+    res.json({ success: true, data: resource, dataSource: 'mongodb-atlas' });
   } catch (error) {
     console.error('Error fetching resource detail:', error);
     const item = memoryResources.find(r => r.id === req.params.id);
     if (item) {
-      return res.json({ success: true, data: item });
+      return res.json({ success: true, data: item, dataSource: 'fallback-on-error' });
     }
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
 
@@ -154,20 +209,40 @@ export const getResourceById = async (req, res) => {
  */
 export const getCategories = async (req, res) => {
   try {
-    const categoriesWithCounts = seedCategories.map(cat => {
-      const count = memoryResources.filter(r => r.category === cat.id).length;
-      return {
-        ...cat,
-        resourceCount: count
-      };
-    });
+    const dbStatus = await getDBStatus();
+    let countsMap = {};
+
+    if (dbStatus.isConnected) {
+      // Dynamic aggregation from MongoDB Atlas
+      const aggregations = await Resource.aggregate([
+        { $group: { _id: '$category', count: { $sum: 1 } } }
+      ]);
+      aggregations.forEach(item => {
+        countsMap[item._id] = item.count;
+      });
+    } else {
+      seedCategories.forEach(cat => {
+        countsMap[cat.id] = memoryResources.filter(r => r.category === cat.id).length;
+      });
+    }
+
+    const categoriesWithCounts = seedCategories.map(cat => ({
+      ...cat,
+      resourceCount: countsMap[cat.id] || 0
+    }));
 
     res.json({
       success: true,
+      dataSource: dbStatus.isConnected ? 'mongodb-atlas' : 'resilient-in-memory',
       data: categoriesWithCounts
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
+    console.error('Error fetching categories:', error.message);
+    const fallback = seedCategories.map(cat => ({
+      ...cat,
+      resourceCount: memoryResources.filter(r => r.category === cat.id).length
+    }));
+    res.json({ success: true, dataSource: 'fallback-on-error', data: fallback });
   }
 };
 
@@ -181,8 +256,7 @@ export const getOpportunities = async (req, res) => {
       type: req.query.type || 'all'
     };
 
-    // Filter for schemes, training, markets
-    const dbStatus = getDBStatus();
+    const dbStatus = await getDBStatus();
     if (dbStatus.isUsingFallback) {
       let opps = memoryResources.filter(r => r.type !== 'learning-resource');
       if (query.type && query.type !== 'all') {
@@ -197,7 +271,7 @@ export const getOpportunities = async (req, res) => {
           item.description?.hi?.toLowerCase().includes(term)
         );
       }
-      return res.json({ success: true, count: opps.length, data: opps });
+      return res.json({ success: true, count: opps.length, dataSource: 'resilient-in-memory', data: opps });
     }
 
     const filter = {
@@ -220,35 +294,35 @@ export const getOpportunities = async (req, res) => {
     }
 
     const opportunities = await Resource.find(filter).sort({ featured: -1, createdAt: -1 });
-    res.json({ success: true, count: opportunities.length, data: opportunities });
+    res.json({ success: true, count: opportunities.length, dataSource: 'mongodb-atlas', data: opportunities });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
 };
 
 /**
- * POST /api/seed
+ * POST /api/seed - Safe Idempotent Seeding
  */
 export const seedDatabase = async (req, res) => {
   try {
-    const dbStatus = getDBStatus();
+    const dbStatus = await getDBStatus();
     if (dbStatus.isUsingFallback) {
       memoryResources = [...seedResources];
       return res.json({
         success: true,
-        message: 'In-memory dataset refreshed successfully.',
-        count: memoryResources.length
+        message: 'In-memory dataset reloaded idempotently.',
+        count: memoryResources.length,
+        dataSource: 'resilient-in-memory'
       });
     }
 
-    await Resource.deleteMany({});
-    const inserted = await Resource.insertMany(seedResources);
+    const syncResult = await idempotentSeed();
 
     res.json({
       success: true,
-      message: 'Database seeded successfully with verified records.',
-      count: inserted.length,
-      data: inserted
+      message: 'MongoDB Atlas synchronized safely without dropping existing collections.',
+      syncResult,
+      dataSource: 'mongodb-atlas'
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

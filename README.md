@@ -6,17 +6,17 @@
 
 ---
 
-## 1. Project Objective
+## 1. Project Objective & Vision
 
-Rural women entrepreneurs face systemic barriers: fragmented business information, digital illiteracy, language barriers, predatory moneylenders, and difficulty discovering authentic government subsidies. 
+Rural women entrepreneurs face systemic challenges: fragmented business knowledge, language barriers, predatory informal moneylenders, and difficulty finding verified government subsidies.
 
-**UdaanSaheli (उड़ान सहेली)** is a lightweight, mobile-first web application designed specifically for rural smartphones, low-bandwidth connections, and first-time digital users. It brings verified government schemes, practical step-by-step business guides, free district vocational training, and institutional market linkages into one simple, bilingual (Hindi & English) portal.
+**UdaanSaheli (उड़ान सहेली)** is a lightweight, mobile-first web application designed specifically for rural smartphones, low-bandwidth connections, and first-time digital users. It combines verified government schemes, practical step-by-step business guides, free district vocational training, and institutional market linkages into one simple, bilingual (Hindi & English) portal.
 
 ---
 
 ## 2. Key Features
 
-- **🌐 Zero-Latency Bilingual Toggle (हिन्दी / English)**: Switch the entire user interface and curated content seamlessly with one tap. Tailored with respectful, accessible language.
+- **🌐 Zero-Latency Bilingual Toggle (हिन्दी / English)**: Switch the entire user interface and curated content instantly with one tap. Language preference is persisted across browser refreshes via `localStorage`.
 - **🔊 Voice Assistance (Web Speech API Audio Reader)**: Text-to-speech speaker button on cards and detail views that reads aloud guide summaries and eligibility requirements in clear Hindi or English for semi-literate users.
 - **🔤 Text Size Adjuster (A / A+ / A++)**: Accessible typography controls allowing users to enlarge fonts for enhanced readability in outdoor bright sunlight.
 - **📱 Mobile-First Native Experience**: Fixed bottom navigation bar (`Home`, `Learning`, `Schemes & Markets`, `Saved`, `Impact`) with 48px+ touch targets optimized for one-thumb Android smartphone usage.
@@ -28,215 +28,180 @@ Rural women entrepreneurs face systemic barriers: fragmented business informatio
   5. *Branding & Marketing (ब्रांडिंग और मार्केटिंग)*
   6. *Digital Selling (डिजिटल बिक्री — WhatsApp, UPI, GeM, ONDC)*
 - **🏛️ Verified Government Schemes Directory**:
-  - PMEGP (Prime Minister Employment Generation Programme — 35% rural subsidy)
-  - Pradhan Mantri Mudra Yojana (Shishu & Kishore collateral-free micro-loans)
-  - Lakhpati Didi Initiative (DAY-NRLM)
-  - PMFME (Food processing equipment subsidy)
-  - RSETI (Free district residential vocational training)
-  - GeM Saras Collection (Direct selling to government departments)
-  - ONDC (Open Network for Digital Commerce)
-  - SARAS Mela & Hunar Haat Exhibitions
+  - **PMEGP**: Prime Minister Employment Generation Programme (35% rural subsidy, KVIC/MSME).
+  - **Mudra Yojana**: Pradhan Mantri Mudra Yojana (Shishu & Kishore collateral-free micro-loans up to ₹5 Lakhs).
+  - **Lakhpati Didi**: DAY-NRLM Self-Help Group livelihood mission.
+  - **PMFME**: Food processing machinery capital subsidy up to ₹10 Lakhs.
+  - **RSETI**: Free district residential vocational training with lodging & food.
+  - **GeM Saras Collection**: Direct institutional sales to Government departments.
+  - **ONDC**: Open Network for Digital Commerce for nationwide micro-selling.
+  - **SARAS Mela & Hunar Haat**: National urban exhibition stalls for artisans.
 - **🔖 Zero-Friction Bookmarks (Saved Resources)**: One-tap bookmarking stored directly in browser `localStorage`. No mandatory logins, OTPs, or passwords required.
 - **🔍 Instant Live Search & Filters**: Search in Hindi or English by scheme name, product, or keyword with real-time feedback and clear empty states.
 - **📊 BIOS 2026 Impact Framework & Usability Simulator**: Interactive simulation measuring:
   1. *Time taken to find a relevant resource* (Target: < 60s)
   2. *Task completion rate*
-  3. *Official link click-through leads*
+  3. *Official link click-through leads*  
+  *(Clearly identified as proposed evaluation metrics and simulated usability trials).*
 
 ---
 
-## 3. Technology Stack
+## 3. Technology Stack & Architecture
 
 - **Frontend**: React 18, Vite 6, Tailwind CSS 3.4, Lucide React Icons
 - **Backend**: Node.js v22, Express.js 4.21, Mongoose 8.9, CORS, Morgan
 - **Database**: MongoDB Atlas (with automatic fallback to resilient in-memory cache if MongoDB is offline or unconfigured)
-- **Deployment Ready**:
-  - Frontend: Vercel (`vercel.json`)
-  - Backend: Render (`render.yaml`)
-- **Version Control**: Git & GitHub
-
----
-
-## 4. Project Structure
+- **Deployment Architecture**: Unified Single Render Web Service where Express directly serves the production Vite build (`client/dist`) and handles `/api` endpoints under the same origin.
 
 ```
-udaansaheli/
-├── client/                     # Frontend (React + Vite + Tailwind CSS)
-│   ├── public/
-│   │   └── favicon.svg         # UdaanSaheli wing motif
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── AudioReader.jsx       # Web Speech API TTS
-│   │   │   ├── BottomNav.jsx         # Mobile bottom navigation bar
-│   │   │   ├── Footer.jsx            # Helplines (1800-180-2000, 181) & Disclaimer
-│   │   │   ├── Navbar.jsx            # Bilingual header & text size toggle
-│   │   │   ├── ResourceCard.jsx      # Touch-friendly 48px cards
-│   │   │   ├── SearchAndFilter.jsx   # Search bar & filter pills
-│   │   │   └── VerificationBadge.jsx # Official portal badge
-│   │   ├── context/
-│   │   │   ├── LanguageContext.jsx   # Hindi/English state with localStorage
-│   │   │   └── SavedContext.jsx      # Bookmark state with localStorage
-│   │   ├── data/
-│   │   │   └── initialData.js        # Offline fallback dataset
-│   │   ├── pages/
-│   │   │   ├── HomePage.jsx          # Hero, 3 steps, 6 categories, spotlight
-│   │   │   ├── ImpactMetricsPage.jsx # BIOS 2026 evaluation simulator
-│   │   │   ├── OpportunitiesPage.jsx # Schemes, training, and markets
-│   │   │   ├── ResourceDetailPage.jsx# Roadmap, eligibility & official links
-│   │   │   ├── ResourcesPage.jsx     # Searchable directory with empty state
-│   │   │   └── SavedPage.jsx         # Offline bookmarked guides
-│   │   ├── services/
-│   │   │   └── api.js                # Resilient API communication layer
-│   │   ├── translations/
-│   │   │   ├── en.js                 # English dictionary
-│   │   │   └── hi.js                 # Hindi dictionary
-│   │   ├── App.jsx
-│   │   ├── main.jsx
-│   │   └── index.css
-│   ├── index.html
-│   ├── tailwind.config.js
-│   ├── vite.config.js
-│   ├── vercel.json             # Vercel SPA routing
-│   ├── .env.example
-│   └── package.json
-├── server/                     # Backend (Node.js + Express + MongoDB Atlas)
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── db.js           # Resilient connection & auto-seeder
-│   │   ├── controllers/
-│   │   │   └── resourceController.js # REST API handlers
-│   │   ├── data/
-│   │   │   └── seedData.js     # Curated authentic schemes & business guides
-│   │   ├── models/
-│   │   │   └── Resource.js     # Mongoose bilingual schema
-│   │   ├── routes/
-│   │   │   └── resourceRoutes.js # Express router
-│   │   └── index.js            # Express app entrypoint
-│   ├── render.yaml             # Render service declaration
-│   ├── test-api.js             # Automated verification suite
-│   ├── .env.example
-│   └── package.json
-├── README.md
-└── .gitignore
+┌────────────────────────────────────────────────────────────────────────┐
+│                   Unified Single-URL Web Service                       │
+│                         (Express.js Server)                            │
+│                                                                        │
+│   ├── Static Assets & SPA Routes (/) ────► Serves client/dist          │
+│   │                                       (React + Vite + Tailwind)    │
+│   └── REST API Endpoints (/api/*) ───────► Express Controllers         │
+│                                                                        │
+│          ▲                                        ▲                    │
+│          │ Same Origin (No CORS overhead)         │ Mongoose ODM       │
+│          ▼                                        ▼                    │
+│   [Browser / Mobile App]                  [MongoDB Atlas Cluster]      │
+│                                           (Or Resilient Fallback)      │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 5. Local Setup & Running Instructions
+## 4. Local Setup & Running Instructions
 
 ### Prerequisites
 - Node.js (v18 or higher, tested on v22.14.0)
 - npm (v9 or higher, tested on 10.9.2)
 
-### Step 1: Clone or Navigate to the Repository
+### Running as a Unified Single Service (Production Simulation)
 ```bash
+# 1. Clone repository
 git clone https://github.com/YOUR_USERNAME/udaansaheli.git
 cd udaansaheli
-```
 
-### Step 2: Set Up and Run the Backend Server
-```bash
-cd server
-npm install
+# 2. Build the unified project
+npm run build
 
-# (Optional) Configure environment variables
-cp .env.example .env
-
-# Start the Express server
+# 3. Start the unified service
 npm start
 ```
-The server will start on `http://localhost:5000`.  
-> **Note on Database**: If you haven't provided a `MONGODB_URI` yet, the backend automatically runs in **resilient in-memory mode** using the seed dataset. It will never crash or fail to serve requests.
+Open **`http://localhost:5000`** in your browser. Both the web application and the REST API are live under this single port!
 
-### Step 3: Set Up and Run the Frontend Client
-In a new terminal window:
+### Running in Split Development Mode (Hot Reloading)
 ```bash
-cd client
-npm install
-
-# Start the Vite development server
-npm run dev
-```
-Open your browser and visit:  
-👉 **`http://localhost:5173`**
-
----
-
-## 6. Environment Variables Guide
-
-### Server (`server/.env`)
-```ini
-PORT=5000
-NODE_ENV=development
-# MongoDB Atlas Connection URI
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/udaansaheli?retryWrites=true&w=majority
-# Frontend CORS origin
-CORS_ORIGIN=http://localhost:5173
-```
-
-### Client (`client/.env`)
-```ini
-# Production API URL (leave blank in dev to use Vite proxy)
-VITE_API_URL=http://localhost:5000
-```
-
----
-
-## 7. Deployment Instructions
-
-### A. Deploy Backend to Render
-1. Push your code to your GitHub repository.
-2. In Render dashboard (`dashboard.render.com`), click **New + Web Service**.
-3. Connect your `udaansaheli` repository.
-4. Set **Root Directory** to `server`.
-5. Set **Build Command** to `npm install`.
-6. Set **Start Command** to `npm start`.
-7. Under **Environment Variables**, add:
-   - `NODE_ENV`: `production`
-   - `PORT`: `5000`
-   - `MONGODB_URI`: *Your MongoDB Atlas connection string*
-   - `CORS_ORIGIN`: *Your deployed Vercel URL (e.g. `https://udaansaheli.vercel.app`)*
-8. Click **Deploy Web Service**. Note your backend public URL (e.g., `https://udaansaheli-api.onrender.com`).
-
-### B. Deploy Frontend to Vercel
-1. In Vercel dashboard (`vercel.com`), click **Add New... > Project**.
-2. Select your `udaansaheli` repository.
-3. Set **Root Directory** to `client`.
-4. Framework preset will automatically detect **Vite**.
-5. Under **Environment Variables**, add:
-   - `VITE_API_URL`: `https://udaansaheli-api.onrender.com` (your Render backend URL)
-6. Click **Deploy**. Vercel will build and assign your production domain.
-
----
-
-## 8. Verification & Test Suite
-
-The application includes an automated test verification script (`server/test-api.js`):
-```bash
+# Terminal 1: Backend API
 cd server
-node test-api.js
+npm start
+
+# Terminal 2: Frontend with Vite HMR
+cd client
+npm run dev -- --host 127.0.0.1
+```
+- Frontend Dev URL: `http://127.0.0.1:5173` (proxies `/api` to backend)
+- Backend API URL: `http://localhost:5000`
+
+---
+
+## 5. MongoDB Atlas Setup Guide
+
+UdaanSaheli works out-of-the-box with a high-resilience in-memory seed dataset if MongoDB is not yet configured. To connect your persistent cloud database:
+
+1. **Sign in to MongoDB Atlas**: Visit [cloud.mongodb.com](https://cloud.mongodb.com) and create a free Shared Cluster (M0).
+2. **Create Database User**:
+   - Go to **Security > Database Access**.
+   - Click **Add New Database User**.
+   - Choose Password authentication (e.g., username `udaan_admin`, password `YOUR_STRONG_PASSWORD`).
+   - Grant `Read and write to any database` role.
+3. **Configure Network Access**:
+   - Go to **Security > Network Access**.
+   - Click **Add IP Address**.
+   - Click **Allow Access from Anywhere** (`0.0.0.0/0`) so cloud hosting providers (Render) can connect.
+4. **Get Connection String**:
+   - Go to **Deployment > Database**.
+   - Click **Connect > Drivers (Node.js)**.
+   - Copy the URI, replacing `<password>` with your database user password:
+     ```
+     mongodb+srv://udaan_admin:<password>@cluster0.abcde.mongodb.net/udaansaheli?retryWrites=true&w=majority
+     ```
+5. **Set Environment Variable**:
+   - On Render: Add `MONGODB_URI` in **Environment Variables**.
+   - Locally: Create `server/.env` and add `MONGODB_URI=<your-connection-string>`.
+
+When connected, the database seeder runs **safely and idempotently** using bulk upserts (`bulkWrite` with `upsert: true`). It **never drops collections or deletes existing records**.
+
+---
+
+## 6. Single-URL Render Deployment Guide
+
+Deploying as a single Render Web Service eliminates CORS issues and simplifies management under one public URL.
+
+1. **Push your code to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Configure single-service deployment for Render"
+   git push origin main
+   ```
+2. **Create New Web Service in Render**:
+   - Go to [dashboard.render.com](https://dashboard.render.com).
+   - Click **New + > Web Service**.
+   - Connect your GitHub repository `udaansaheli`.
+3. **Configure Service Settings**:
+   - **Name**: `udaansaheli`
+   - **Root Directory**: `.` *(leave empty or dot for repository root)*
+   - **Environment**: `Node`
+   - **Build Command**: `npm run build`
+   - **Start Command**: `npm start`
+   - **Plan**: `Free`
+4. **Add Environment Variables**:
+   - `NODE_ENV`: `production`
+   - `PORT`: `5000` *(or Render's default 10000)*
+   - `MONGODB_URI`: *Your MongoDB Atlas connection URI*
+5. **Click "Deploy Web Service"**:
+   Render will run `npm run build` (building `client/dist` and installing server dependencies) and execute `npm start`.
+   Your unified application will be accessible at:  
+   👉 **`https://udaansaheli.onrender.com`**
+
+---
+
+## 7. Automated Test Suite
+
+Run the automated verification suite:
+```bash
+npm test
+# or
+node server/test-api.js
 ```
 
-### Verified Test Cases:
-- [x] **12 Verified Records Loaded**: All schemes and business guides checked for required schema fields.
-- [x] **Bilingual Integrity**: Verified that 100% of titles, descriptions, eligibility notes, and steps exist in both English and Hindi.
-- [x] **Official Portal URL Validation**: Confirmed that all government schemes point directly to authentic `.gov.in` / `.org.in` domains.
-- [x] **Bilingual Search Precision**: Tested keyword searches in Hindi (e.g. `ऋण`) and English (e.g. `mudra`).
-- [x] **Mobile Responsiveness**: Verified on 360px budget viewport with sticky bottom navigation and 48px+ touch targets.
-- [x] **Zero-Friction LocalStorage Persistence**: Verified bookmarks save and persist across browser refreshes without user authentication.
-- [x] **Web Speech API Audio Playback**: Tested voice read-aloud functionality with Hindi and English voice fallbacks.
-- [x] **Production Bundle Compilation**: Tested `npm run build` on Vite frontend with zero errors.
+### Verified Test Cases (19/19 Passing):
+- [x] **Data Integrity**: 12 curated records with verified official links.
+- [x] **Bilingual Coverage**: 100% of titles, descriptions, eligibility rules, and application roadmaps exist in both Hindi and English.
+- [x] **Bilingual Search Precision**: Verified keyword matching in Hindi (`ऋण`) and English (`mudra`).
+- [x] **Category Coverage**: All 6 required business literacy categories populated.
+- [x] **Input Validation & Security**:
+  - Rejects invalid category parameters with `HTTP 400 Bad Request`.
+  - Rejects invalid type parameters with `HTTP 400 Bad Request`.
+  - Rejects query strings exceeding 100 characters with `HTTP 400 Bad Request`.
+  - Rejects non-existent resource IDs with `HTTP 404 Not Found`.
+- [x] **Credential Masking**: Connection strings securely masked (`mongodb+srv://***:***@cluster...`) to protect secrets in logs.
+- [x] **Diagnostic Health Endpoint**: `/api/health` reports connection status, mode, live record count, and actionable guidance.
+- [x] **Frontend Production Build**: Vite build compiles in under 4 seconds with 0 errors.
 
 ---
 
-## 9. Disclaimers & Limitations (Addressing Build-Plan Risks)
+## 8. Disclaimers & Known Limitations
 
-1. **Information Accuracy**: Government scheme guidelines, interest rates, and subsidies may be updated by ministries over time. UdaanSaheli clearly displays the `Last-Verified Date` on every record and directs users directly to the official ministry portals (`pmegp.gov.in`, `mudra.org.in`, `aajeevika.gov.in`).
-2. **Educational Purpose**: UdaanSaheli is an information aggregator and educational empowerment platform. It does not disburse loans, charge processing fees, or guarantee loan approvals.
-3. **Accessibility**: Audio reader depends on device browser support for the Web Speech API. Visual fallbacks and large typography are always available.
+1. **Information Accuracy**: Government scheme guidelines, eligibility rules, and subsidies are subject to policy updates by the respective ministries. UdaanSaheli provides the `Last-Verified Date` and direct buttons to the official government portals (`pmegp.gov.in`, `mudra.org.in`, `aajeevika.gov.in`, `gem.gov.in`).
+2. **Educational Purpose**: UdaanSaheli is an information aggregator and educational empowerment platform. It does not disburse loans, collect processing fees, or guarantee loan approvals.
+3. **Simulated Usability Metrics**: The Impact Framework and task completion metrics in Section 8 of the application represent proposed evaluation benchmarks and interactive simulations for hackathon judges, not field-measured survey outcomes.
+4. **Voice Assistance**: Audio readout relies on browser support for the Web Speech API. If a browser does not support Hindi voice synthesis, visual text and high-contrast font size controls are provided.
 
 ---
 
-## 10. Team Quantum Leapers (BIOS 2026)
+## 9. Team Quantum Leapers (BIOS 2026)
 
-Developed with pride for the **BIOS 2026 Hackathon** to empower rural women micro-entrepreneurs across India.
+Developed for the **BIOS 2026 Hackathon** to empower rural women micro-entrepreneurs across India.
