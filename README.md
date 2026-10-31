@@ -1,4 +1,4 @@
-# UdaanSaheli (उड़ान सहेली)                                               
+# UdaanSaheli (उड़ान सहेली)                                                
 ### Digital Platform for Rural Women Entrepreneurs
 **Team:** Quantum Leapers  
 **Hackathon Problem Statement:** Digital Platform for Rural Women Entrepreneurs — BIOS 2026 Hackathon  
